@@ -1,0 +1,36 @@
+body {
+  margin: 5 5;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.ocultar {
+  display: none;
+}
+
+.formulario {
+  width: 40%;
+  border: 2px solid black;
+  padding: 25px;
+  border-radius: 30px;
+}
+
+.tabs.row {
+  border-bottom: 3px solid black;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.logo img {
+  width: 20%;
+  height: 20%;
+}
