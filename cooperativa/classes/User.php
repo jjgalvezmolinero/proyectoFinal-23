@@ -40,11 +40,9 @@ class User extends DB {
   }
 
   public function login($user, $pass) {
-    echo $user;
-    echo $pass;
     $usuario = $this->user_exits($user,$pass);
     if(!empty($usuario)){
-      $session = new UserSesion();
+      $session = new UserSession();
       $session->setCurrentUser($user);
       return true;
     }

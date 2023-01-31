@@ -1,8 +1,10 @@
 <?php
 require_once 'classes/UserSession.php';
-$session = new UserSesion();
+$session = new UserSession();
 $user = $session->getCurrentUser();
-echo $user;
-// if(empty( $user))
-//   header("location: login.php");
+if(empty( $user)) {
+  header("location: login.php");
+} else {
+  header('location: views/principal.php');
+}
 

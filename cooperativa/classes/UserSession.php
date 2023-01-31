@@ -1,8 +1,7 @@
 <?php
 
-class UserSesion {
-  public function __construct()
-  {
+class UserSession {
+  public function __construct() {
     session_start();
   }
 
