@@ -1,13 +1,9 @@
 <?php
-require 'views/header.php';
-require 'views/footer.php';
+require_once 'classes/Header.php';
+require_once 'classes/Footer.php';
 
-headerBasico(array(
-  array(
-    'url'=>'css/login.css', 
-    'tipo'=>'css'
-  )
-));
+$Header = new Header(array('css/login.css'), array('css'));
+$Header->headerBasico();
 ?>
 
 <body style="margin: 5 5; width: 100%">
@@ -63,6 +59,7 @@ headerBasico(array(
   </div>
 </body>
 <?php
-footer();
+$Footer = new Footer();
+$Footer->footer();
 ?>
 <script src="js/login.js"></script>

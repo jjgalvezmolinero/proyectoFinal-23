@@ -65,9 +65,8 @@ $(document).ready(function(){
         data: datos
       }
     ). done (function(data){
-      console.log(data);
       if(data == 1) {
-        //document.location.href = '/'
+        document.location.href = '/'
       } else if (data == 0) {
         alert('Error');
       }
