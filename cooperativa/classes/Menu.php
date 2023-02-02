@@ -36,7 +36,7 @@ class Menu {
         </ul>
       </div>
       <div class="collapse navbar-collapse justify-content-end">
-        <a href="#">Desconectar</a>
+        <a href="../src/controller/logout.php">Desconectar</a>
       </div>
     </nav>
     <?php
