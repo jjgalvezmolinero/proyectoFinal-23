@@ -60,7 +60,7 @@ $(document).ready(function(){
     }
     $.ajax(
       {
-        url: 'src/login.php',
+        url: 'src/controller/login.php',
         type: 'POST',
         data: datos
       }
