@@ -754,7 +754,6 @@ const setElmSizeFunctionGenerator = (id, yAxisLabelFontSize) => {
 
 // top-level function
 const drawBarChart = ($element, data, options) => {
-  console.log(data);
   const { valid, error } = dataValidationCheck(data, options);
 
   if (valid) {
@@ -776,7 +775,6 @@ const drawBarChart = ($element, data, options) => {
     const content = makeContent(options, data.stackLabels, yAxis, bars);
 
     //html of the whole chard
-    console.log(xAxis);
     const chart = `
       <div class="bar-chart">
         ${chartTitleDiv}
