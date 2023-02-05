@@ -1,14 +1,14 @@
 <?php
 class Footer {
-  private array $url;
-  private array $tipo;
-  function __construct(array $url=null, array $tipo=null) {
-    if(!is_null($url) && !is_null($tipo)){
-      $this->url = $url;
-      $this->tipo = $tipo;
+  private array $js;
+  private array $css;
+  function __construct(array $js=null, array $css=null) {
+    if(!is_null($js) && !is_null($css)){
+      $this->js = $js;
+      $this->css = $css;
     } else {
-      $this->url = array();
-      $this->tipo = array();
+      $this->js = array();
+      $this->css = array();
     }
   }
 
@@ -22,16 +22,11 @@ class Footer {
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
       <script src="../js/generales.js"></script>
       <?php
-        foreach($this->url as $url):
-          switch ($this->tipo[$pasada]):
-            case "css":
-              echo "<link rel = 'stylesheet' href = '$url'>";
-              break;
-            case "js":
-              echo "<script href = '$url'></script>";
-              break;
-          endswitch;
-          $pasada ++;
+        foreach($this->js as $js):
+          echo "<script src = '$js'></script>";
+        endforeach;
+        foreach($this->css as $css):
+          echo "<link rel = 'stylesheet' href = '$css'>";
         endforeach;
       ?>
     </footer>
