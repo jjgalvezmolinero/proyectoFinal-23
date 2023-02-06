@@ -44,6 +44,7 @@ class User extends DB {
     if(!empty($usuario)){
       $session = new UserSession();
       $session->setCurrentUser($user);
+      $session->setCurrentId($usuario[0]['id']);
       return true;
     }
     return false;

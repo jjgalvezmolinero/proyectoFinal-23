@@ -30,5 +30,7 @@ $Header->headerBasico();
   </div>
 </body>
 <?php
-$Footer = new Footer(array('js/login.js'));
+$Footer = new Footer();
 $Footer->footer();
+?>
+<script src="js/login.js"></script>
