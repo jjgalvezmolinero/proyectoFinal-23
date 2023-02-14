@@ -11,7 +11,7 @@ class Menu {
     ),
     array(
       'titulo' => 'Finca',
-      'url' => 'fincas.php'
+      'url' => 'finca.php'
     )
   );
 
