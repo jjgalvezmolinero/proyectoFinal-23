@@ -7,12 +7,26 @@ $(document).ready(function () {
     modal.find('.modal-body input').val(recipient)
   })
 
+  $('.delete').click(function (e) {
+    let id = $(this).attr('data');
+    if(confirm('¿Está seguro de eliminar la finca?')) {
+      tabla(id,'delete');
+    }
+  });
+
+  $('.edit').click(function (e) {
+    let id = $(this).attr('data');
+    window.open('../views/edit_finca.php?id='+id,'Editar finca','width=600,height=500');
+  });
+
   // Guardamos la finca
   $("#submitForm").click(function (e) { 
+    var data = $('#form-nueva-finca').serializeArray();
+    data.push({name: 'accion', value: 'insert'});
     $.ajax({
       type: "POST",
       url: "../src/controller/finca.php",
-      data: $('#form-nueva-finca').serialize()
+      data: $.param(data)
     }).fail(function (e) {
       alert('Error');
     }).done(function(e) {
@@ -30,5 +44,28 @@ $(document).ready(function () {
 
   function limpiar_formulario() {
     $('#form-nueva-finca').trigger('reset');
+  }
+
+  function eliminar(id) {
+    console.log(id);
+  }
+
+  function editar(id) {
+    console.log(id);
+  }
+  function tabla(id, accion) {
+    let data = {id: id, accion: accion};
+    console.log(data);
+    $.ajax({
+      type: "POST",
+      url: "../src/controller/finca.php",
+      data: data,
+      success: function (response) {
+        if(response = 1) {
+          alert('Finca eliminada correctamente');
+          window.location.reload();
+        }
+      }
+    });
   }
 });

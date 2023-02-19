@@ -46,9 +46,8 @@ class DB {
     $result = $con->query($sql);
     $con->close();
     if($result->field_count>0)
-      return true;
-    
-    return false;
+      return 1;
+    return 0;
   }
 
   public function record_exists($sql) {
