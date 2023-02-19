@@ -6,7 +6,7 @@ require_once '../src/components/tabla.php';
 require_once '../src/components/popup_finca.php';
 require_once '../classes/Finca.php';
 $css = array('../css/finca.css');
-$js = array('../js/finca.js','../js/finca_validate.js');
+$js = array('../js/finca.js','../js/finca_validate.js','https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js');
 $UserSession = new UserSession();
 if(!$UserSession->isLogged()){
   header('Location: ../index.php');
