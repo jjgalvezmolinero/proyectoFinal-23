@@ -32,14 +32,13 @@ class DB {
 
   public function insert_sql($sql) {
     $con = $this->connection();
-    $con->query($sql);
-    $id=0;
-
-    $id = $con->insert_id;
-
-    $con->close();
-
-    return $id;
+    if($con->query($sql) === TRUE) {
+      $id = 0;
+      $id = $con->insert_id;
+      return $id;
+    } else {
+      return 0;
+    }
   }
 
   public function execute($sql) {
