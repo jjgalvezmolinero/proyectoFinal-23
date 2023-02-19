@@ -1,17 +1,34 @@
-.btn-flotante{
+:root {
+  --gree-main: #41502d;
+}
+
+.listaFincas {
+  padding: 2% 5%;
+}
+
+.listaFincas .table thead tr th {
+  background-color: var(--gree-main);
+  border:1px solid var(--gree-main);
+  text-transform: uppercase;
+}
+
+.listaFincas .table tbody tr td {
+  border: 1px solid lightgray;
+}
+
+.btnFlotante{
   width:90px;
   height:240px;
   position:absolute;
   right:0px;
   bottom:0px;
-  
 }
 
 .btn-add{
   width:60px;
   height:60px;
   border-radius:100%;
-  background:#41502d;
+  background:var(--gree-main);
   right:0;
   bottom:0;
   position:absolute;
@@ -24,4 +41,8 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   transition:.3s;  
   cursor: pointer;
+}
+
+#popupNewFinca .error{
+  color: red;
 }

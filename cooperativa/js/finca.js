@@ -8,23 +8,27 @@ $(document).ready(function () {
   })
 
   // Guardamos la finca
-  $("#submit-form").click(function (e) { 
-    console.log($('#form-nueva-finca').serialize());
+  $("#submitForm").click(function (e) { 
     $.ajax({
       type: "POST",
       url: "../src/controller/finca.php",
-      data: $('#form-nueva-finca').serialize(),
-      success: function (response) {
-        console.log(response);
+      data: $('#form-nueva-finca').serialize()
+    }).fail(function (e) {
+      alert('Error');
+    }).done(function(e) {
+      if(e > 0) {
+        alert('Finca guardada correctamente');
+        window.location.reload();
+      } else {
+        alert('Error al guardar la finca');
       }
     });
   });
-  $('#clear-form').click(function (e) { 
+  $('#clearForm').click(function (e) { 
     limpiar_formulario();
   });
 
   function limpiar_formulario() {
-    $('#form-nueva-finca input[type="text"]').each(function() { this.value = '' });
-    $('#form-nueva-finca input[type="checkbox"]').each(function() { this.checked = false });
+    $('#form-nueva-finca').trigger('reset');
   }
 });

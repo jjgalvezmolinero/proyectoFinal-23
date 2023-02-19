@@ -1,5 +1,4 @@
 <?php
-
 class UserSession {
   public function __construct() {
     session_start();
@@ -24,5 +23,11 @@ class UserSession {
   public function closeSession() {
     session_unset();
     session_destroy();
+  }
+
+  public function isLogged() {
+    if(isset($_SESSION['user']))
+      return true;
+    return false;
   }
 }
