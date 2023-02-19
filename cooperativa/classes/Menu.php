@@ -7,16 +7,39 @@ class Menu {
     ),
     array(
       'titulo' => 'Temporada',
-      'url' => 'temporadas.php'
+      'url' => 'temporada.php'
     ),
     array(
       'titulo' => 'Finca',
       'url' => 'finca.php'
     )
   );
+  
+  private array $menuUsuarioAdmin = array(
+    array(
+      'titulo' => 'Inicio',
+      'url' => 'principal.php'
+    ),
+    array(
+      'titulo' => 'Temporada',
+      'url' => 'temporada.php'
+    ),
+    array(
+      'titulo' => 'Finca',
+      'url' => 'finca.php'
+    ),
+    array(
+      'titulo' => 'Usuarios',
+      'url' => 'usuarios.php'
+    ),
+    array(
+      'titulo' => 'Roles',
+      'url' => 'roles.php'
+    )
+  );
 
   public function menuBasico() {
-    $menuAMostrar = $this->menuUsuarioNormal;
+    $menuAMostrar = $this->menuUsuarioAdmin;
     ?>
     <nav class="navbar navbar-expand-lg bg-light">
       <a class="navbar-brand" href="#">
