@@ -2,39 +2,39 @@ $(function () {
   $("form[name='nuevaFinca']").validate({
     rules: {
       nombreFinca: {
-        required: true
+        require_onced: true
       },
       municipioFinca: {
-        required: true
+        require_onced: true
       },
       provinciaFinca: {
-        required: true
+        require_onced: true
       },
       poligonoFinca: {
-        required: true
+        require_onced: true
       },
       parcelaFinca: {
-        required: true
+        require_onced: true
       }
     },
     messages: {
       nombreFinca: {
-        required: "Tienes que poner el nombre de la finca"
+        require_onced: "Tienes que poner el nombre de la finca"
       },
       municipioFinca: {
-        required: "Tienes que poner el municipio donde se encuentra la finca"
+        require_onced: "Tienes que poner el municipio donde se encuentra la finca"
       },
       provinciaFinca: {
-        required: "Tienes que poner la provincia donde se encuentra la finca"
+        require_onced: "Tienes que poner la provincia donde se encuentra la finca"
       },
       poligonoFinca: {
-        required: "Tienes que poner el polígono donde se encuentra la finca"
+        require_onced: "Tienes que poner el polígono donde se encuentra la finca"
       },
       parcelaFinca: {
-        required: "Tienes que poner la parcela donde se encuentra la finca"
+        require_onced: "Tienes que poner la parcela donde se encuentra la finca"
       },
       parcelaFinca: {
-        required: "Tienes que poner la parcela donde se encuentra la finca"
+        require_onced: "Tienes que poner la parcela donde se encuentra la finca"
       }
     }
   });
