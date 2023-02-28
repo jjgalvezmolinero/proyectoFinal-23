@@ -1,5 +1,5 @@
 <?php
-require '../../classes/Finca.php';
+require_once '../../classes/Finca.php';
 
 $accion = $_POST['accion'];
 

@@ -1,6 +1,6 @@
 <?php
-require 'DB.php';
-require 'UserSession.php';
+require_once 'DB.php';
+require_once 'UserSession.php';
 class User extends DB {
   private $nombre;
   private $username;
