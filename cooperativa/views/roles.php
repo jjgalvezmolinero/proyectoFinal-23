@@ -3,8 +3,8 @@ require_once '../classes/Menu.php';
 require_once '../classes/Header.php';
 require_once '../classes/Footer.php';
 require_once '../src/components/popup_roles.php';
-require_once '  ../classes/Permisos.php';
-require_once '  ../classes/Roles.php';
+require_once '../classes/Permisos.php';
+require_once '../classes/Roles.php';
 
 $css = array("../css/roles.css");
 $js = array("../js/roles.js");
