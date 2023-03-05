@@ -13,6 +13,10 @@ $Header->headerBasico();
 $Finca = new Finca();
 $id = $_GET['id'];
 $finca = $Finca->get_finca($id);
+$UserSession = new UserSession();
+if(!$UserSession->isLogged()){
+  header('Location: ../index.php');
+}
 ?>
 <div class="logo">
   <img src="../img/logo.svg" class='logo_edit'>
@@ -22,17 +26,17 @@ $finca = $Finca->get_finca($id);
   <div class="modal-body">
     <div class="form-group">
       <label for="nombreFinca" class="col-form-label">Nombre de la finca:</label>
-      <input type="text" class="form-control" id="nombreFinca" name="nombreFinca" value="<?php echo $finca['nombre'] ?>" require_onced>
+      <input type="text" class="form-control" id="nombreFinca" name="nombreFinca" value="<?php echo $finca['nombre'] ?>" required>
     </div>
     <div class="form-group">
       <div class="row mb-2">
         <div class="col">
           <label for="municipioFinca">Municipio:</label><br>
-          <input type="text" class="form-control" name="municipioFinca" id="municipioFinca" value="<?php echo $finca['municipio'] ?>" require_onced>
+          <input type="text" class="form-control" name="municipioFinca" id="municipioFinca" value="<?php echo $finca['municipio'] ?>" required>
         </div>
         <div class="col">
           <label for="provinciaFinca">Provincia:</label><br>
-          <input type="text" class="form-control" name="provinciaFinca" id="provinciaFinca" value="<?php echo $finca['provincia'] ?>" require_onced>
+          <input type="text" class="form-control" name="provinciaFinca" id="provinciaFinca" value="<?php echo $finca['provincia'] ?>" required>
         </div>
       </div>
     </div>
@@ -40,11 +44,11 @@ $finca = $Finca->get_finca($id);
       <div class="row align-items-center">
         <div class="col">
           <label for="poligonoFinca">Poligono:</label>
-          <input type="text" class="form-control" name="poligonoFinca" id="poligonoFinca" value="<?php echo $finca['poligono'] ?>" require_onced>
+          <input type="text" class="form-control" name="poligonoFinca" id="poligonoFinca" value="<?php echo $finca['poligono'] ?>" required>
         </div>
         <div class="col">
           <label for="parcelaFinca">Parcela:</label>
-          <input type="text" class="form-control" name="parcelaFinca" id="parcelaFinca" value="<?php echo $finca['parcela'] ?>" require_onced>
+          <input type="text" class="form-control" name="parcelaFinca" id="parcelaFinca" value="<?php echo $finca['parcela'] ?>" required>
         </div>
         <div class="col-sm form-check">
           <label for="regadioFinca">Regadío</label><br>

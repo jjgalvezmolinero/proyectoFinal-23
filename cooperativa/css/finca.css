@@ -1,7 +1,3 @@
-:root {
-  --gree-main: #41502d;
-}
-
 .listaFincas {
   padding: 2% 5%;
 }
@@ -45,24 +41,4 @@
 
 #popupNewFinca .error{
   color: red;
-}
-
-button.edit, button.delete {
-  padding: 5px 8px;
-  background: white;
-  border: 1px solid;
-}
-
-button.edit {
-  color: #007bff;
-  border-color: #007bff;
-}
-
-button.delete {
-  color: #dc3545;
-  border-color: #dc3545;
-}
-
-button {
-  cursor: pointer;
 }

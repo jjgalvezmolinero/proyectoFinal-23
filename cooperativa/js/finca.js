@@ -16,7 +16,7 @@ $(document).ready(function () {
 
   $('.edit').click(function (e) {
     let id = $(this).attr('data');
-    window.open('../views/edit_finca.php?id='+id,'Editar finca','width=600,height=500');
+    window.open('../views/edits/finca.php?id='+id,'Editar finca','width=600,height=500');
   });
 
   // Guardamos la finca
