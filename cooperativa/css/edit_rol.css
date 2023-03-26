@@ -1,0 +1,13 @@
+.logo {
+  text-align: center;
+}
+
+
+img.logo_edit {
+  width: 150px;
+  height: 100px;
+}
+
+body {
+  background-color: red;
+}
