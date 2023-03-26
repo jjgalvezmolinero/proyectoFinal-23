@@ -19,6 +19,7 @@ class Header {
     ?>
     <head>
       <link rel="shortcut icon" href="<?php echo $this->favicon; ?>" type="image/x-icon">
+      <link rel="stylesheet" href="../css/style.css">
       <title>Cooperativa</title>
       <?php
         foreach($this->url as $url):

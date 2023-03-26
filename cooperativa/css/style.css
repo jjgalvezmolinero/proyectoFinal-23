@@ -1,0 +1,38 @@
+:root {
+  --gree-main: #41502d;
+}
+
+button.edit, button.delete {
+  padding: 5px 8px;
+  background: white;
+  border: 1px solid;
+}
+
+button.edit {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+button.delete {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: lightgray !important;
+  color: var(--gree-main) !important;
+}
+
+.table thead tr th {
+  background-color: var(--gree-main);
+  border:1px solid var(--gree-main);
+  text-transform: uppercase;
+}
+
+.table tbody tr td {
+  border: 1px solid lightgray;
+}
