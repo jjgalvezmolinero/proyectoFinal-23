@@ -1,14 +1,20 @@
 <?php
-function tabla_generica($datos, $cabecera) {
+function tabla_generica($datos, $cabecera, $acciones = true, $acciones_custom = "") {
+  $id = 0;
   ?>
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col"></th>
+        <?php
+        if($acciones) echo "<th scope='col'></th>";
+        ?>
         <?php
         $pasada = 0;
         foreach($cabecera as $titulo) {
           echo "<th scope='col'>$titulo</th>";
+        }
+        if($acciones_custom != "") {
+          echo "<th scope='col'></th>";
         }
         ?>
       </tr>
@@ -21,6 +27,8 @@ function tabla_generica($datos, $cabecera) {
         foreach($dato as $row){
           if($pasada==0) {
             $pasada++;
+            if(!$acciones) continue;
+            $id = $row;
             ?>
             <td>
               <button class="edit" data="<?php echo $row;?>"><i class="fa fa-pencil"></i></button>
@@ -29,7 +37,7 @@ function tabla_generica($datos, $cabecera) {
             </td>
             <?php
           }
-          if($pasada == 1) {
+          if($pasada == 1 && $acciones) {
             $pasada++;
             continue;
           }
@@ -39,6 +47,11 @@ function tabla_generica($datos, $cabecera) {
             echo "<td>$row</td>";
           }
           $pasada++;
+        }
+        if($acciones_custom != "") {
+          echo "<td>";
+          echo $acciones_custom;
+          echo "</td>";
         }
         echo "</tr>";
       }
