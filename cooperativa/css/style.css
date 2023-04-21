@@ -2,6 +2,33 @@
   --gree-main: #41502d;
 }
 
+.btnFlotante{
+  width:90px;
+  height:240px;
+  position:absolute;
+  right:0px;
+  bottom:0px;
+}
+
+.btnFlotante .btn-add-popup {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background: var(--gree-main);
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  border: none;
+  outline: none;
+  color: #FFF;
+  font-size: 36px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+  transition: .3s;
+  cursor: pointer;
+}
+
 button.edit, button.delete {
   padding: 5px 8px;
   background: white;
@@ -27,7 +54,7 @@ button {
   color: var(--gree-main) !important;
 }
 
-.table thead tr th {
+.tablaGeneral .table thead tr th {
   background-color: var(--gree-main);
   border:1px solid var(--gree-main);
   text-transform: uppercase;

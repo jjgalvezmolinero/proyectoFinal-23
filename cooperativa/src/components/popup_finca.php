@@ -2,7 +2,7 @@
 function popup_finca() {
   ?>
   <div class="btnFlotante">
-    <button class="btn-add" id="btn-add" data-toggle="modal" data-target="#popupNewFinca">
+    <button class="btn-add-popup" id="btn-add" data-toggle="modal" data-target="#popupNewFinca">
       <i class="fa fa-plus" aria-hidden="true"></i>
     </button>
   </div>
