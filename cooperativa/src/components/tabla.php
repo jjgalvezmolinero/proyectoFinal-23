@@ -31,8 +31,8 @@ function tabla_generica($datos, $cabecera, $acciones = true, $acciones_custom = 
             $id = $row;
             ?>
             <td>
-              <button class="edit" data="<?php echo $row;?>"><i class="fa fa-pencil"></i></button>
-              <button class="delete" data="<?php echo $row;?>"><i class='fa fa-trash'></i></button>
+              <button class="edit" data-edit="<?php echo $row;?>"><i class="fa fa-pencil"></i></button>
+              <button class="delete" data-delete="<?php echo $row;?>"><i class='fa fa-trash'></i></button>
               <input type="hidden" name="id" value="<?php echo $row; ?>">
             </td>
             <?php

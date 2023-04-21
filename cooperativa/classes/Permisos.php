@@ -43,5 +43,15 @@ class Permisos {
       return false;
     }
   }
+
+  public function borrar_permiso($id) {
+    $DB = new DB();
+    $sql = "DELETE FROM role WHERE id = '$id'";
+    $DB->execute($sql);
+    $sql = "DELETE FROM role_data WHERE role_id = '$id'";
+    $DB->execute($sql);
+    $sql = "DELETE FROM role_assignments WHERE role_id = '$id'";
+    return $DB->execute($sql);
+  }
   
 }

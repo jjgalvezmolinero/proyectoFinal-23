@@ -45,9 +45,11 @@ class DB {
     $con = $this->connection();
     $result = $con->query($sql);
     $con->close();
-    if($result->field_count>0)
+    if($result) {
       return 1;
-    return 0;
+    } else {
+      return 0;
+    }
   }
 
   public function record_exists($sql) {

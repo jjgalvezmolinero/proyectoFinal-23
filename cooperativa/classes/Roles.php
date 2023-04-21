@@ -47,4 +47,9 @@ class Roles {
     $sql = "UPDATE role_assignments SET role_id = '$role_id' WHERE user_id = '$user_id'";
     return $DB->execute($sql);
   }
+  public function delete_rol($id) {
+    $DB = new DB();
+    $sql = "DELETE FROM role WHERE role.id = '$id'";
+    return $DB->execute($sql);
+  }
 }
