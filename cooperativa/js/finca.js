@@ -8,14 +8,14 @@ $(document).ready(function () {
   })
 
   $('.delete').click(function (e) {
-    let id = $(this).attr('data');
+    let id = $(this).attr('data-delete');
     if(confirm('¿Está seguro de eliminar la finca?')) {
       tabla(id,'delete');
     }
   });
 
   $('.edit').click(function (e) {
-    let id = $(this).attr('data');
+    let id = $(this).attr('data-edit');
     window.open('../views/edits/finca.php?id='+id,'Editar finca','width=600,height=500');
   });
 

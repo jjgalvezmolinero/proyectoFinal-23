@@ -1,11 +1,11 @@
 <?php
-require_once '../classes/Header.php';
-require_once '../classes/Footer.php';
-require_once '../classes/Finca.php';
-require_once '../classes/UserSession.php';
+require_once '../../classes/Header.php';
+require_once '../../classes/Footer.php';
+require_once '../../classes/Finca.php';
+require_once '../../classes/UserSession.php';
 
-$css = array('../css/edit_finca.css');
-$js = array('../js/edit_finca.js');
+$css = array('../../css/edit_finca.css');
+$js = array('../../js/edit_finca.js');
 
 $Header = new Header();
 $Footer = new Footer($js,$css);
