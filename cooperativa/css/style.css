@@ -63,3 +63,7 @@ button {
 .table tbody tr td {
   border: 1px solid lightgray;
 }
+
+.tablaGeneral {
+  padding: 2% 5%;
+}

@@ -1,7 +1,3 @@
-.listaFincas {
-  padding: 2% 5%;
-}
-
 .listaFincas .table thead tr th {
   background-color: var(--gree-main);
   border:1px solid var(--gree-main);
