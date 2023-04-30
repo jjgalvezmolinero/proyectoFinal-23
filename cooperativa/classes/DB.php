@@ -32,27 +32,35 @@ class DB {
 
   public function insert_sql($sql) {
     $con = $this->connection();
-    if($con->query($sql) === TRUE) {
-      $id = 0;
-      $id = $con->insert_id;
-      return $id;
-    } else {
-      return 0;
+    try {
+      if($con->query($sql) === TRUE) {
+        $id = 0;
+        $id = $con->insert_id;
+        return $id;
+      }
+    } catch (Exception $e) {
+      return $e->getMessage();
     }
   }
 
   public function execute($sql) {
     $con = $this->connection();
-    $result = $con->query($sql);
-    $con->close();
-    if($result) {
-      return 1;
-    } else {
-      return 0;
+    try {
+      $result = $con->query($sql);
+      if($result && (!empty($result->num_rows) && $result->num_rows > 0)) {
+        $con->close();
+        return 1;
+      } else {
+        $con->close();
+        return 0;
+      }
+    } catch (Exception $e) {
+      $con->close();
+      return $e->getMessage();
     }
   }
 
   public function record_exists($sql) {
-    return $this->execute($sql);
+    return $this->execute($sql)==1?true:false;
   }
 } 

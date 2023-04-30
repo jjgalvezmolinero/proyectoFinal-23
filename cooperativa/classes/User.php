@@ -22,21 +22,56 @@ class User extends DB {
     else
       $sql = "INSERT INTO user VALUES (null, '$username', '$nif', '$email', '$password')";
 
-    $id_usuario = $this->insert_sql($sql);
-
-    if($login)
-      $this->login($username, $password);
-
-    return $id_usuario;
+    try {
+      $id_usuario = $this->insert_sql($sql);
+      return $id_usuario;
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
   }
 
   public function insert_user_meta($userid, $key, $value) {
-    $sql_comprobacion = "SELECT id FROM user_meta WHERE userid=$userid AND user_key='$key' AND user_value='$value'";
-    if(!$this->record_exists($sql_comprobacion))
-      $sql = "INSERT INTO user_meta VALUES user_key='$key', user_value='$value' WHERE userid=$userid";
+    $sql_comprobacion = "SELECT id FROM user_meta WHERE user_id=$userid AND user_key='$key'"; 
+    $existe = $this->record_exists($sql_comprobacion);
+    if(!$existe) 
+      $sql = "INSERT INTO user_meta VALUES (null, $userid, '$key', '$value')";
     else
-      $sql = "UPDATE user_meta SET (null,$userid,'$key', $value)";
+      $sql = "UPDATE user_meta SET (null,$userid,'$key', '$value') WHERE user_id=$userid AND user_key='$key'";
     $this->insert_sql($sql);
+  }
+
+  public function update_user($user) {
+    foreach($user as $clave => $valor) {
+      if($clave != 'id' ||  
+        ($clave != 'password' && !empty($valor))
+      ) {
+        if($clave == 'password')
+          $valor = md5($valor);
+        $sql = "UPDATE user SET $clave='$valor' WHERE id=$user[id]";
+        $this->execute($sql);
+      }
+    }
+  }
+
+  public function get_user_meta($userid) {
+    $sql = "SELECT user_key, user_value FROM user_meta WHERE user_id=$userid";
+    $user_meta = $this->get_sql($sql);
+    $meta = [];
+    foreach($user_meta as $clave=>$valor) {
+      $meta[$valor['user_key']] = $valor['user_value'];
+    }
+    return $meta;
+  }
+
+  public function get_user_rol($userid) {
+    $sql = "SELECT role_id FROM role_assignments WHERE user_id=$userid";
+    $rol = $this->get_sql($sql);
+    return $rol[0]['role_id'];
+  }
+
+  public function delete_user($id) {
+    $sql = "DELETE FROM user WHERE id=$id";
+    return $this->execute($sql);
   }
 
   public function login($user, $pass) {
@@ -48,5 +83,26 @@ class User extends DB {
       return true;
     }
     return false;
+  }
+
+  public function get_all_users() {
+    $sql = "SELECT u.id, u.username, u.nif, u.email, r.name 
+    FROM user u
+      INNER JOIN role_assignments ra ON u.id = ra.user_id 
+      INNER JOIN role r ON r.id = ra.role_id";
+    return $this->get_sql($sql);
+  }
+
+  public function get_user($id) {
+    $sql = "SELECT * FROM user WHERE id=$id";
+    return $this->get_sql($sql);
+  }
+
+  public function get_user_popup($id) {
+    $sql = "SELECT u.id, u.username, u.nif, u.email, ra.role_id 
+    FROM user u
+      INNER JOIN role_assignments ra ON u.id = ra.user_id
+    WHERE u.id=$id";
+    return $this->get_sql($sql);
   }
 }

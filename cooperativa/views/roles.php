@@ -29,7 +29,7 @@ echo "<div class='listaRoles'>";
 echo "</div>";
 ?>
 <div class="btnFlotante">
-  <button class="btn btn-primary btn-add" type="button" data-toggle="modal" data-target="#popupNewRol">
+  <button class="btn btn-primary btn-add-popup" type="button" data-toggle="modal" data-target="#popupNewRol">
     <i class="fa fa-plus" aria-hidden="true"></i>
   </button>
 </div>
