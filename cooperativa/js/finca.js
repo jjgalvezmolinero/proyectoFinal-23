@@ -36,7 +36,7 @@ $(document).ready(function () {
         $("#provinciaFinca").val(finca.provincia);
         $("#poligonoFinca").val(finca.poligono);
         $("#parcelaFinca").val(finca.parcela);
-        $("input[name=regadioFinca][value=" + finca.regadio + "]").prop('checked', true);
+        $("input[name=regadioFinca][id=" + finca.regadio + "]").prop('checked', true);
         $("#titulo").html('Editar finca');
       }
     });
