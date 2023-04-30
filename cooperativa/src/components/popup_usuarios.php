@@ -1,14 +1,6 @@
 <?php
 function popup_usuarios($idusuario = 0) {
   require_once '../classes/Roles.php';
-  require_once '../classes/User.php';
-  $Roles = new Roles();
-  $datos = [];
-  if($idusuario > 0) {
-    $User = new User();
-    $datos = $User->get_user_popup($idusuario);
-    print_r($datos);
-  }
   ?>
   <div class="modal fade" id="popupNewUser" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

@@ -47,7 +47,7 @@ class DB {
     $con = $this->connection();
     try {
       $result = $con->query($sql);
-      if($result && (!empty($result->num_rows) && $result->num_rows > 0)) {
+      if($result || (!empty($result->num_rows) && $result->num_rows > 0)) {
         $con->close();
         return 1;
       } else {

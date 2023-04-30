@@ -5,7 +5,7 @@ function popup_roles($lista_permisos) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Creación de un nuevo rol</h5>
+          <h5 class="modal-title" id="titulo">Creación de un nuevo rol</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -63,16 +63,17 @@ function popup_roles($lista_permisos) {
           </div>
         
           <div class="modal-footer">
-            <button type="button" class="text-primary bg-white border-primary rounded p-2" id="clearFormRol">
+            <button class="text-primary bg-white border-primary rounded p-2" id="clearFormRol">
               <i class="fa-solid fa-eraser" aria-hidden="true"></i>
             </button>
-            <button type="button" class="text-danger bg-white border-danger rounded p-2" data-dismiss="modal" id="cancelFormRol">
+            <button class="text-danger bg-white border-danger rounded p-2" data-dismiss="modal" id="cancelFormRol">
               <i class="fa fa-xmark"></i>
             </button>
-            <button type="button" class="text-success bg-white border-success rounded p-2" id="submitFormRol">
+            <button class="text-success bg-white border-success rounded p-2" id="submitFormRol" data-accion="insertar" data-rol="0">
               <i class="fa fa-check" aria-hidden="true"></i>
             </button>
           </div>
+          <div id="respuesta"></div>
         </form>
       </div>
     </div>

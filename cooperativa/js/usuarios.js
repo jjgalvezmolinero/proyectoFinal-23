@@ -86,7 +86,6 @@ function update_user() {
       url: "../src/controller/usuarios.php",
       data: formUsuarios,
       success: function (response) {
-        console.log(response);
         htmlString = '';
         if(response >= 1) {
           htmlString = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Usuario editado correctamente</strong></div>";
