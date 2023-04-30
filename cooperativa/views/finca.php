@@ -26,6 +26,11 @@ $fincas = $Finca->get_fincas_users($UserSession->getCurrentId());
   ?>
 </div>
 
+<div class="btnFlotante">
+  <button class="btn-add-popup" id="abrirPopup" data-toggle="modal" data-target="#popupNewFinca">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+  </button>
+</div>
 <?php
 popup_finca();
 $Footer->footer();

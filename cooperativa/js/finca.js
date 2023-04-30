@@ -1,11 +1,12 @@
 $(document).ready(function () {
-  $('#btn-add').on('show.bs.modal', function (e) {
-    var button = $(e.relatedTarget)
-    var recipient = button.data('whatever')
-    var modal = $(this)
-    modal.find('.modal-title').text('New message to ' + recipient)
-    modal.find('.modal-body input').val(recipient)
-  })
+  $("#abrirPopup").click(function (e) {
+    $("#popupNewFinca").modal('show');
+    $("#submitForm").attr('data-accion', 'crear');
+    $("#submitForm").attr('data-finca', 0);
+    $("respuesta").html("");
+    $("#titulo").html('Creación de una nueva finca');
+    $('#form-nueva-finca')[0].reset();
+  });
 
   $('.delete').click(function (e) {
     let id = $(this).attr('data-delete');
@@ -16,27 +17,34 @@ $(document).ready(function () {
 
   $('.edit').click(function (e) {
     let id = $(this).attr('data-edit');
-    window.open('../views/edits/finca.php?id='+id,'Editar finca','width=600,height=500');
+    let data = {
+      'id': id,
+      'accion': 'getFinca'
+    }
+    $.ajax({
+      type: "POST",
+      url: "../src/controller/finca.php",
+      data: data,
+      success: function (response) {
+        $("#popupNewFinca").modal('show');
+        $("#submitForm").attr('data-accion', 'editar');
+        $("#submitForm").attr('data-finca', id);
+        $("respuesta").html("");
+        let finca = JSON.parse(response);
+        $("#nombreFinca").val(finca.nombre);
+        $("#municipioFinca").val(finca.municipio);
+        $("#provinciaFinca").val(finca.provincia);
+        $("#poligonoFinca").val(finca.poligono);
+        $("#parcelaFinca").val(finca.parcela);
+        $("input[name=regadioFinca][value=" + finca.regadio + "]").prop('checked', true);
+        $("#titulo").html('Editar finca');
+      }
+    });
   });
 
   // Guardamos la finca
   $("#submitForm").click(function (e) { 
-    var data = $('#form-nueva-finca').serializeArray();
-    data.push({name: 'accion', value: 'insert'});
-    $.ajax({
-      type: "POST",
-      url: "../src/controller/finca.php",
-      data: $.param(data)
-    }).fail(function (e) {
-      alert('Error');
-    }).done(function(e) {
-      if(e > 0) {
-        alert('Finca guardada correctamente');
-        window.location.reload();
-      } else {
-        alert('Error al guardar la finca');
-      }
-    });
+    
   });
   $('#clearForm').click(function (e) { 
     limpiar_formulario();
@@ -45,17 +53,8 @@ $(document).ready(function () {
   function limpiar_formulario() {
     $('#form-nueva-finca').trigger('reset');
   }
-
-  function eliminar(id) {
-    console.log(id);
-  }
-
-  function editar(id) {
-    console.log(id);
-  }
   function tabla(id, accion) {
     let data = {id: id, accion: accion};
-    console.log(data);
     $.ajax({
       type: "POST",
       url: "../src/controller/finca.php",
@@ -63,9 +62,66 @@ $(document).ready(function () {
       success: function (response) {
         if(response = 1) {
           alert('Finca eliminada correctamente');
-          window.location.reload();
+          location.reload();
         }
       }
     });
   }
 });
+
+function update_finca(id) {
+  $(document).ready(function () {
+    var data = $('#form-nueva-finca').serializeArray();
+    data.push({name: 'accion', value: 'insert'});
+    data.push({name: 'id', value: id});
+    $.ajax({
+      type: "POST",
+      url: "../src/controller/finca.php",
+      data: data,
+      success: function (response) {
+        htmlString = '';
+        if(response > 0) {
+          htmlString = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Finca guardada correctamente</strong></div>";
+        } else {
+          htmlString = "<div class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Error al editar la finca</strong></div>";
+        }
+        $("#respuesta").html(htmlString);
+        setInterval(()=>{
+          if(response > 0) {
+            $("#formNewRol")[0].reset();
+            $("#popupNewRol").modal('hide');
+            location.reload();
+          }
+        }, 5000)
+      }
+    });
+  });
+}
+
+function insert_finca() {
+  $(document).ready(function () {
+    var data = $('#form-nueva-finca').serializeArray();
+    data.push({name: 'accion', value: 'insert'});
+    $.ajax({
+      type: "POST",
+      url: "../src/controller/finca.php",
+      data: data,
+      success: function (response) {
+        htmlString = '';
+        if(response > 0) {
+          htmlString = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Finca guardada correctamente</strong></div>";
+        } else {
+          htmlString = "<div class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Error al crear la finca</strong></div>";
+        }
+        $("#respuesta").html(htmlString);
+        setInterval(()=>{
+          if(response > 0) {
+            $("#form-nueva-finca")[0].reset();
+            $("#popupNewFinca").modal('hide');
+            location.reload();
+          }
+        }, 5000)
+      }
+    });
+  });
+}

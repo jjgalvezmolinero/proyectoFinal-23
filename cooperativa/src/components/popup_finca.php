@@ -1,17 +1,11 @@
 <?php
 function popup_finca() {
   ?>
-  <div class="btnFlotante">
-    <button class="btn-add-popup" id="btn-add" data-toggle="modal" data-target="#popupNewFinca">
-      <i class="fa fa-plus" aria-hidden="true"></i>
-    </button>
-  </div>
-
   <div class="modal fade" id="popupNewFinca" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Creación de una nueva finca</h5>
+          <h5 class="modal-title" id="titulo">Creación de una nueva finca</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -64,6 +58,7 @@ function popup_finca() {
               <i class="fa fa-check" aria-hidden="true"></i>
             </button>
           </div>
+          <div id="respuesta"></div>
         </form>
       </div>
     </div>
