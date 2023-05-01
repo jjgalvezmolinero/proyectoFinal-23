@@ -753,7 +753,7 @@ const setElmSizeFunctionGenerator = (id, yAxisLabelFontSize) => {
 };
 
 // top-level function
-const drawBarChart = ($element, data, options) => {
+const drawBarChart = ($element, labels, data, options) => {
   const { valid, error } = dataValidationCheck(data, options);
 
   if (valid) {
@@ -770,7 +770,7 @@ const drawBarChart = ($element, data, options) => {
     const bars = makeBars(data.values, options);
 
     //label the x axis
-    const xAxis = makeXAxis(data.labels, options);
+    const xAxis = makeXAxis(labels, options);
 
     const content = makeContent(options, data.stackLabels, yAxis, bars);
 
