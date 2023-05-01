@@ -57,4 +57,9 @@ class Entrega {
     $sql = "DELETE FROM entrega WHERE entrega.id = $id";
     return $DB->execute($sql);
   }
+  public function get_entregas_temporada($id) {
+    $DB = new DB();
+    $sql = "SELECT peso, f.nombre, f.municipio FROM entrega e INNER JOIN finca f ON e.id_finca = f.id WHERE temporada = $id";
+    return $DB->get_sql($sql);
+  }
 }

@@ -48,4 +48,8 @@ if($_POST['accion'] == 'get_selects') {
 } else if($_POST['accion'] == 'borrar') {
   $id = $_POST['id'];
   echo $Entrega->delete_entrega($id);
+} else if($_POST['accion'] == 'getEntregaTemporada') {
+  $id_temporada = $_POST['id_temporada'];
+  $entregas = $Entrega->get_entregas_temporada($id_temporada);
+  echo json_encode($entregas, JSON_UNESCAPED_UNICODE);
 }

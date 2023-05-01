@@ -6,20 +6,34 @@ $(document).ready(function () {
       'accion': 'getTemporadas'
     },
     success: function (response) {
-      const values = [0.409, 0.15, 0.857, 0.0583, 0.183];
-      const data  = {
-        labels: 'Temporada 2019',
-        values: values
-      }
-      
       let temporadas = JSON.parse(response);
       temporadas.forEach(temporada => {
         $("#temporadas").append(
-          "<option value='"+temporada.id+"'>"+temporada.denominacion+"</option>"
+          "<option value='"+temporada.id+"' data-denominacion='"+temporada.denominacion+"'>"+temporada.denominacion+"</option>"
         );
       });
+      $.ajax({
+        type: "POST",
+        url: "../src/controller/entregas.php",
+        data: {
+          'accion': 'getEntregaTemporada',
+          'id_temporada': $("#temporadas").val()
+        },
+        success: function (response) {
+          let datos = JSON.parse(response);
+          var labels = [];
+          var values = [];
+          var data = [];
+          datos.forEach(dato => {
+            labels.push(dato.nombre+"("+dato.municipio+")");
+            values.push(parseInt(dato.peso));
+          });
+          data.labels = labels;
+          data.values = values;
+          grafico(labels, data, $("#temporadas option:selected").attr("data-denominacion"))
+        }
+      });
 
-      grafico(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'], data, '2019')
 
     }
   });
@@ -27,19 +41,30 @@ $(document).ready(function () {
     let id = $(this).val();
     $.ajax({
       type: "POST",
-      url: "../src/controller/temporada.php",
+      url: "../src/controller/entregas.php",
       data: {
-        'accion': 'getTemporada',
-        'id': id
+        'accion': 'getEntregaTemporada',
+        'id_temporada': id
       },
       success: function (response) {
-        let temporada = JSON.parse(response);
-        $("#titulo-temporada").html(temporada.denominacion);
-        let data = {
-          labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-          values: [0.409, 0.15, 0.857, 0.0583, 0.183]
+        console.log(response);
+        var data = [];
+        var labels = [];
+        var values = [];
+        if(response == ''){
+          grafico(labels, data, $("#temporadas option:selected").attr("data-denominacion"))
+          return;
         }
-        grafico(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'], data, temporada.denominacion)
+          
+        let datos = JSON.parse(response);
+        
+        datos.forEach(dato => {
+          labels.push(dato.nombre+"("+dato.municipio+")");
+          values.push(parseInt(dato.peso));
+        });
+        data.labels = labels;
+        data.values = values;
+        grafico(labels, data, $("#temporadas option:selected").attr("data-denominacion"))
       }
     });
   });
