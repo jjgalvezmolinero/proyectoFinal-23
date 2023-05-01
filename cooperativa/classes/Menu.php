@@ -21,6 +21,14 @@ class Menu {
       'url' => 'principal.php'
     ),
     array(
+      'titulo' => 'Aceituna',
+      'url' => 'aceituna.php'
+    ),
+    array(
+      'titulo' => 'Entregas',
+      'url' => 'entregas.php'
+    ),
+    array(
       'titulo' => 'Temporada',
       'url' => 'temporada.php'
     ),

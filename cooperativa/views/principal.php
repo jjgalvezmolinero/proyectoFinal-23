@@ -3,6 +3,7 @@ require_once '../classes/UserSession.php';
 require_once '../classes/Menu.php';
 require_once '../classes/Header.php';
 require_once '../classes/Footer.php';
+require_once '../classes/Temporada.php';
 
 $js = array(
   '../js/principal.js',
@@ -19,11 +20,17 @@ $Header = new Header();
 $Footer = new Footer($js,$css);
 $Header->headerBasico();
 $Menu->menuBasico();
+$Temporada = new Temporada();
+$temporadas = $Temporada->get_temporadas();
 ?>
 <div class="container">
   <div class="row mb-3">
     <div class="col">.col</div>
-    <div class="col">.col</div>
+    <div class="col">
+      <select class="form-control" id="temporadas">
+      </select>
+      <div id="graficos"></div>
+    </div>
   </div>
 </div>
 <?php

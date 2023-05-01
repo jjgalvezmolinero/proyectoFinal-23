@@ -69,19 +69,19 @@ function insert_aceituna() {
     data: data,
     success: function (response) {
       htmlString = '';
+      if(response > 0) {
+        htmlString = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Variedad guardada correctamente</strong></div>";
+      } else {
+        htmlString = "<div class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Error al guardar la variedad</strong></div>";
+      }
+      $("#respuesta").html(htmlString);
+      setInterval(()=>{
         if(response > 0) {
-          htmlString = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Variedad guardada correctamente</strong></div>";
-        } else {
-          htmlString = "<div class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Error al guardar la variedad</strong></div>";
+          $("#form-nueva-aceituna")[0].reset();
+          $("#popupNewAceituna").modal('hide');
+          location.reload();
         }
-        $("#respuesta").html(htmlString);
-        setInterval(()=>{
-          if(response > 0) {
-            $("#form-nueva-aceituna")[0].reset();
-            $("#popupNewAceituna").modal('hide');
-            location.reload();
-          }
-        }, 5000)
+      }, 5000)
     }
   });
 }

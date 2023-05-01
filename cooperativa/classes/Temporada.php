@@ -17,6 +17,11 @@ class Temporada {
     }
     return $temporadas;
   }
+  public function get_temporadas_selects() {
+    $DB = new DB();
+    $sql = "SELECT id, denominacion FROM temporada";
+    return $DB->get_sql($sql);
+  }
   public function insert_temporada($denominacion, $fecha_inicio, $fecha_fin){
     $DB = new DB();
     $sql = "INSERT INTO temporada (denominacion, fecha_inicio, fecha_fin) VALUES (

@@ -28,6 +28,12 @@ class Finca{
     return $DB->get_sql($consulta);
   }
 
+  function get_fincas_selects() {
+    $DB = new DB();
+    $consulta = 'SELECT id, nombre FROM finca';
+    return $DB->get_sql($consulta);
+  }
+
   function delete_finca($id_finca) {
     $DB = new DB();
     $consulta = 'DELETE FROM finca WHERE id='.$id_finca;
