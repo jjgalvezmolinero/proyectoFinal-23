@@ -25,9 +25,9 @@ $entregas = $Entregas->get_entregas();
 $UserSession->isAdmin();
 $isAdmin = $UserSession->isAdmin();
 
-tabla_generica($entregas, ["finca", "aceituna", "temporada", "peso"], $isAdmin);
+tabla_generica($entregas, ["finca", "aceituna", "temporada", "peso"]);
 
-if($isAdmin) {
+// if($isAdmin) {
   ?>
   <div class="btnFlotante">
     <button class="btn btn-primary btn-add-popup" type="button" id="abrirPopup" data-toggle="modal" data-target="#popupNewRol">
@@ -36,5 +36,5 @@ if($isAdmin) {
   </div>
   <?php
   popup_entregas();
-}
+// }
 $Footer->footer();

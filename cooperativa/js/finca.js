@@ -44,7 +44,11 @@ $(document).ready(function () {
 
   // Guardamos la finca
   $("#submitForm").click(function (e) { 
-    
+    if($(this).attr('data-accion') == 'crear') {
+      insert_finca();
+    } else if($(this).attr('data-accion') == 'editar') {
+      update_finca($(this).attr('data-finca'));
+    }
   });
   $('#clearForm').click(function (e) { 
     limpiar_formulario();
@@ -72,8 +76,18 @@ $(document).ready(function () {
 function update_finca(id) {
   $(document).ready(function () {
     var data = $('#form-nueva-finca').serializeArray();
-    data.push({name: 'accion', value: 'insert'});
+    data.push({name: 'accion', value: 'editar'});
     data.push({name: 'id', value: id});
+    var vacio = false;
+    $.each(data, function (key, value) {
+      if(vacio) return false;
+      if (value == '' || value == null) {
+        alert('Debe rellenar todos los campos');
+        vacio = true;
+        return false;
+      }
+    });
+    if(vacio) return false;
     $.ajax({
       type: "POST",
       url: "../src/controller/finca.php",
@@ -102,6 +116,16 @@ function insert_finca() {
   $(document).ready(function () {
     var data = $('#form-nueva-finca').serializeArray();
     data.push({name: 'accion', value: 'insert'});
+    var vacio = false;
+    $.each(data, function (key, value) {
+      if(vacio) return false;
+      if (value == '' || value == null) {
+        alert('Debe rellenar todos los campos');
+        vacio = true;
+        return false;
+      }
+    });
+    if(vacio) return false;
     $.ajax({
       type: "POST",
       url: "../src/controller/finca.php",

@@ -20,10 +20,6 @@ if($_POST['accion'] == 'insertar') {
     'password' => $password
   ];
   $id_usuario = $User->create_user($user);
-  echo $id_usuario;
-  print_r($user);
-  echo $firstname;
-  echo $lastname;
   if($id_usuario > 0) {
     $User->insert_user_meta($id_usuario, 'firstname', $firstname);
     $User->insert_user_meta($id_usuario, 'lastname', $lastname);
@@ -59,9 +55,13 @@ if($_POST['accion'] == 'insertar') {
     'password' => $password
   ];
   $User->update_user($user);
-  $User->insert_user_meta($id, 'firstname', $firstname);
-  $User->insert_user_meta($id, 'lastname', $lastname);
+  $User->update_user_meta($id, 'firstname', $firstname);
+  $User->update_user_meta($id, 'lastname', $lastname);
   $Role = new Roles();
   $Role->update_role_assignments($id, $rol);
   echo $id;
+} else if($_POST['accion'] == 'getRol') {
+  $Role = new Roles();
+  $roles = $Role->get_roles();
+  echo json_encode($roles, JSON_UNESCAPED_UNICODE);
 }

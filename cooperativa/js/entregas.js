@@ -101,6 +101,16 @@ function insert_entrega() {
       'variedad': $("#variedad").val(),
       'peso': $("#peso").val(),
     }
+    var vacio = false;
+    $.each(data, function (key, value) {
+      if(vacio) return false;
+      if (value == '' || value == null) {
+        alert('Debe rellenar todos los campos');
+        vacio = true;
+        return false;
+      }
+    });
+    if(vacio) return false;
     $.ajax({
       type: "POST",
       url: "../src/controller/entregas.php",
@@ -136,6 +146,16 @@ function update_entrega(id) {
       'variedad': $("#variedad").val(),
       'peso': $("#peso").val(),
     }
+    var vacio = false;
+    $.each(data, function (key, value) {
+      if(vacio) return false;
+      if (value == '' || value == null) {
+        alert('Debe rellenar todos los campos');
+        vacio = true;
+        return false;
+      }
+    });
+    if(vacio) return false;
     $.ajax({
       type: "POST",
       url: "../src/controller/entregas.php",

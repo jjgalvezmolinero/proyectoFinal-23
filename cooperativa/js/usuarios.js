@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  get_rol()
   $("#submitForm").click(function (e) { 
     e.preventDefault();
     var formUsuarios = $("#form-nuevo-usuario").serializeArray();
@@ -107,8 +108,8 @@ function update_user() {
 
 function insert_user() {
   $(document).ready(function () {
-    var formUsuarios = $("#form-nuevo-usuario").serializeArray();
-    formUsuarios.push({name: 'accion', value: 'insertar'});
+    var data = $("#form-nuevo-usuario").serializeArray();
+    data.push({name: 'accion', value: 'insertar'});
     if(
       $("#password").val() != $("#password-confirm").val() &&
       $("#password").val() != "" && $("#password-confirm").val() != ""
@@ -116,10 +117,20 @@ function insert_user() {
       alert('Las contraseñas no coinciden');
       return;
     }
+    var vacio = false;
+    $.each(data, function (key, value) {
+      if(vacio) return false;
+      if (value == '' || value == null) {
+        alert('Debe rellenar todos los campos');
+        vacio = true;
+        return false;
+      }
+    });
+    if(vacio) return false;
     $.ajax({
       type: "POST",
       url: "../src/controller/usuarios.php",
-      data: formUsuarios,
+      data: data,
       success: function (response) {
         console.log(response);
         htmlString = '';
@@ -136,6 +147,25 @@ function insert_user() {
             location.reload();
           }
         }, 5000)
+      }
+    });
+  });
+}
+
+function get_rol() {
+  $(document).ready(function () {
+    $.ajax({
+      type: "POST",
+      url: "../src/controller/usuarios.php",
+      data: {'accion': 'getRol'},
+      success: function (response) {
+        console.log(response);
+        let roles = JSON.parse(response);
+        let htmlString = '';
+        roles.forEach(rol => {
+          htmlString += `<option value="${rol.id}">${rol.name}</option>`;
+        });
+        $("#rol").html(htmlString);
       }
     });
   });

@@ -32,13 +32,17 @@ class User extends DB {
   }
 
   public function insert_user_meta($userid, $key, $value) {
-    $sql_comprobacion = "SELECT id FROM user_meta WHERE user_id=$userid AND user_key='$key'"; 
-    $existe = $this->record_exists($sql_comprobacion);
-    if(!$existe) 
+    // $sql_comprobacion = "SELECT id FROM user_meta WHERE user_id=$userid AND user_key='$key'"; 
+    // $existe = $this->record_exists($sql_comprobacion);
+    // if(!$existe) 
       $sql = "INSERT INTO user_meta VALUES (null, $userid, '$key', '$value')";
-    else
-      $sql = "UPDATE user_meta SET (null,$userid,'$key', '$value') WHERE user_id=$userid AND user_key='$key'";
-    $this->insert_sql($sql);
+    // else
+    //   $sql = "UPDATE user_meta SET (null,$userid,'$key', '$value') WHERE user_id=$userid AND user_key='$key'";
+    return $this->insert_sql($sql);
+  }
+  public function update_user_meta($userid, $key, $value) {
+    $sql = "UPDATE user_meta SET user_value='$value' WHERE user_id=$userid AND user_key='$key'";
+    return $this->execute($sql);
   }
 
   public function update_user($user) {

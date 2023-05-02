@@ -23,12 +23,12 @@ $isAdmin = $UserSession->isAdmin();
 ?>
 <div class="listaFincas">
   <?php
-    tabla_generica($fincas,array('nombre','municipio','provincia','poligono','parcela','regadio'), $isAdmin);
+    tabla_generica($fincas,array('nombre','municipio','provincia','poligono','parcela','regadio'));
   ?>
 </div>
 <?php
 
-if($isAdmin){
+// if($isAdmin){
   ?>
   <div class="btnFlotante">
     <button class="btn-add-popup" id="abrirPopup" data-toggle="modal" data-target="#popupNewFinca">
@@ -37,5 +37,5 @@ if($isAdmin){
   </div>
   <?php
   popup_finca();
-}
+// }
 $Footer->footer();
