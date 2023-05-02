@@ -22,13 +22,19 @@ $Header->headerBasico();
 $Menu->menuBasico();
 $Entregas = new Entrega();
 $entregas = $Entregas->get_entregas();
-tabla_generica($entregas, ["finca", "aceituna", "temporada", "peso"])
-?>
-<div class="btnFlotante">
-  <button class="btn btn-primary btn-add-popup" type="button" id="abrirPopup" data-toggle="modal" data-target="#popupNewRol">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-  </button>
-</div>
-<?php
-popup_entregas();
+$UserSession->isAdmin();
+$isAdmin = $UserSession->isAdmin();
+
+tabla_generica($entregas, ["finca", "aceituna", "temporada", "peso"], $isAdmin);
+
+if($isAdmin) {
+  ?>
+  <div class="btnFlotante">
+    <button class="btn btn-primary btn-add-popup" type="button" id="abrirPopup" data-toggle="modal" data-target="#popupNewRol">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+  <?php
+  popup_entregas();
+}
 $Footer->footer();

@@ -6,12 +6,12 @@ class Menu {
       'url' => 'principal.php'
     ),
     array(
-      'titulo' => 'Temporada',
-      'url' => 'temporada.php'
-    ),
-    array(
       'titulo' => 'Finca',
       'url' => 'finca.php'
+    ),
+    array(
+      'titulo' => 'Entregas',
+      'url' => 'entregas.php'
     )
   );
   
@@ -47,7 +47,13 @@ class Menu {
   );
 
   public function menuBasico() {
-    $menuAMostrar = $this->menuUsuarioAdmin;
+    require_once '../classes/UserSession.php';
+    $UserSession = new UserSession();
+    if($UserSession->isAdmin()){
+      $menuAMostrar = $this->menuUsuarioAdmin;
+    } else {
+      $menuAMostrar = $this->menuUsuarioNormal;
+    }
     ?>
     <nav class="navbar navbar-expand-lg bg-light">
       <a class="navbar-brand" href="#">

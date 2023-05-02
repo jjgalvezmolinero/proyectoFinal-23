@@ -18,19 +18,24 @@ $Footer = new Footer($js,$css);
 $Header->headerBasico();
 $Menu->menuBasico();
 $fincas = $Finca->get_fincas_users($UserSession->getCurrentId());
+$UserSession->isAdmin();
+$isAdmin = $UserSession->isAdmin();
 ?>
-
 <div class="listaFincas">
   <?php
-    tabla_generica($fincas,array('nombre','municipio','provincia','poligono','parcela','regadio'));
+    tabla_generica($fincas,array('nombre','municipio','provincia','poligono','parcela','regadio'), $isAdmin);
   ?>
 </div>
-
-<div class="btnFlotante">
-  <button class="btn-add-popup" id="abrirPopup" data-toggle="modal" data-target="#popupNewFinca">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-  </button>
-</div>
 <?php
-popup_finca();
+
+if($isAdmin){
+  ?>
+  <div class="btnFlotante">
+    <button class="btn-add-popup" id="abrirPopup" data-toggle="modal" data-target="#popupNewFinca">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+  <?php
+  popup_finca();
+}
 $Footer->footer();

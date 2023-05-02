@@ -43,18 +43,26 @@ $lista_usuarios = $User->get_all_users();
         <div id="graficos"></div>
       </div>
     </div>
-    <div class="row">
-      <div class="col usuarios">
-        <h3>Usuarios</h3>
-        <?php
-        tabla_generica($lista_usuarios, ["Nombre de usuario", 
-          "NIF",
-          "Correo electrónico",
-          "Rol"
-        ], false);
-        ?>
+    <?php
+    $UserSession->isAdmin();
+    $isAdmin = $UserSession->isAdmin();
+    if($isAdmin) {
+      ?>
+      <div class="row">
+        <div class="col usuarios">
+          <h3>Usuarios</h3>
+          <?php
+          tabla_generica($lista_usuarios, ["Nombre de usuario", 
+            "NIF",
+            "Correo electrónico",
+            "Rol"
+          ], false);
+          ?>
+        </div>
       </div>
-    </div>
+      <?php
+    }
+    ?>
   </div>
 </div>
 <?php

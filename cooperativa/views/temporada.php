@@ -14,7 +14,9 @@ $Footer = new Footer($js,$css);
 $Header->headerBasico();
 $Menu->menuBasico();
 $UserSession = new UserSession();
-if(!$UserSession->isLogged()){
+$UserSession->isAdmin();
+$isAdmin = $UserSession->isAdmin();
+if(!$UserSession->isLogged() || !$isAdmin){
   header('Location: ../index.php');
 }
 $Temporada = new Temporada();

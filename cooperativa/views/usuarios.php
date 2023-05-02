@@ -20,8 +20,10 @@ $Header->headerBasico();
 $Menu->menuBasico();
 $Footer->footer();
 $UserSession = new UserSession();
+$UserSession->isAdmin();
+$isAdmin = $UserSession->isAdmin();
 
-if(!$UserSession->isLogged()){
+if(!$UserSession->isLogged() || !$isAdmin){
   header('Location: ../index.php');
 }
 $User = new User();

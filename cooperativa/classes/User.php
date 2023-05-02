@@ -1,6 +1,7 @@
 <?php
 require_once 'DB.php';
 require_once 'UserSession.php';
+
 class User extends DB {
   private $nombre;
   private $username;
@@ -69,17 +70,25 @@ class User extends DB {
     return $rol[0]['role_id'];
   }
 
+  public function get_user_rol_idnumber($userid) {
+    $sql = "SELECT idnumber FROM role WHERE id = (SELECT role_id FROM role_assignments WHERE user_id = $userid)";
+    $rol = $this->get_sql($sql);
+    return $rol[0]['idnumber'];
+  }
+
   public function delete_user($id) {
     $sql = "DELETE FROM user WHERE id=$id";
     return $this->execute($sql);
   }
 
   public function login($user, $pass) {
+    require_once 'Roles.php';
     $usuario = $this->user_exits($user,$pass);
     if(!empty($usuario)){
       $session = new UserSession();
       $session->setCurrentUser($user);
       $session->setCurrentId($usuario[0]['id']);
+      $session->setCurrentRol($this->get_user_rol_idnumber($usuario[0]['id']));
       return true;
     }
     return false;

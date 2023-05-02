@@ -1,7 +1,16 @@
 <?php
 class UserSession {
   public function __construct() {
+    error_reporting(0);
     session_start();
+  }
+
+  public function setCurrentRol($rol) {
+    $_SESSION['rol']=$rol;
+  }
+
+  public function getCurrentRol() {
+    return $_SESSION['rol'];
   }
 
   public function setCurrentUser($user) {
@@ -28,6 +37,13 @@ class UserSession {
   public function isLogged() {
     if(isset($_SESSION['user']))
       return true;
+    return false;
+  }
+
+  public function isAdmin() {
+    if($this->getCurrentRol() == 'admin') {
+      return true;
+    }
     return false;
   }
 }

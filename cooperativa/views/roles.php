@@ -19,7 +19,9 @@ $Roles = new Roles();
 $lista_permisos = $Permisos->get_permisos();
 $lista_roles = $Roles->get_roles();
 $UserSession = new UserSession();
-if(!$UserSession->isLogged()){
+$UserSession->isAdmin();
+$isAdmin = $UserSession->isAdmin();
+if(!$UserSession->isLogged() || !$isAdmin){
   header('Location: ../index.php');
 }
 $Header->headerBasico();
